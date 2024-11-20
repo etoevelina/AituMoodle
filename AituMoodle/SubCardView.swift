@@ -122,20 +122,14 @@ struct SubCardView: View {
                                        .cornerRadius(12)
                                        .shadow(color: Color(red: 0, green: 0, blue: 0).opacity(0.25), radius: 2, x: 1, y: 6)
                                }
-                               
-                               
                            }
-                           
-                        
-                           
                        }
-                       .padding()
                        .frame(width: 314, height: 435)
                        .background(gradients[index % gradients.count])
                        .cornerRadius(31)
                        .shadow(color: Color.black.opacity(0.25), radius: 2, x: 1, y: 6)
-                       .padding(.top)
-                       .padding(.bottom, 70)
+                       //.padding(.top)
+                      .padding(.bottom, 20)
                    }
                    .tag(index)
                }
@@ -145,6 +139,6 @@ struct SubCardView: View {
        }
 }
 
-#Preview {
-    SubCardView()
-}
+//#Preview {
+//    SubCardView()
+//}

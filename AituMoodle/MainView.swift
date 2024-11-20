@@ -11,16 +11,23 @@ struct MainView: View {
     @AppStorage("selectedTab") var selectedTab: Tab = .home
     
     var body: some View {
-        switch selectedTab {
-        case .bell:
-            ScholarShipView()
-        case .home:
-            ContentView()
-        case .user:
-            Text ("user")
+        NavigationView{
+            ZStack{
+                Group{
+                    switch selectedTab {
+                    case .bell:
+                        NotificationsView()
+                    case .home:
+                        ContentView()
+                    case .user:
+                        Text ("user")
+                    }
+                }
+                TupBarView()
+            }.transition(.opacity)
+            .animation(.easeInOut, value: selectedTab)
+            
         }
-        
-        TupBarView()
     }
 }
 

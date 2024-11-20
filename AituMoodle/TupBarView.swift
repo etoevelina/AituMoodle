@@ -41,7 +41,7 @@ struct TupBarView: View {
                 }
             } label: {
                 item.icon.view()
-                    .frame(height: 56)
+                    .frame(height: 38)
                     .opacity(selectedTab == item.tab ? 1 : 0.5)
                     .background(
                         VStack {

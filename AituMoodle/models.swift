@@ -36,3 +36,12 @@ struct Subject: Identifiable, Codable {
         formatter.timeStyle = .none
         return formatter
     }()
+
+struct Notifications: Identifiable, Codable{
+    var id = UUID()
+    let date: Date
+    let subName: String
+    let assName: String
+    let previousMark: String
+    let currentMark: String
+}
