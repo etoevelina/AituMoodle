@@ -9,6 +9,9 @@ import SwiftUI
 
 struct NotificationsView: View {
     let notifications = [
+        Notifications(date: Date(), subName: "Intoducing to programming 1", assName: "Register Term", previousMark: "N/A", currentMark: "100"),
+        Notifications(date: Date(), subName: "Intoducing to programming 1", assName: "Register Term", previousMark: "N/A", currentMark: "100"),
+        Notifications(date: Date(), subName: "Intoducing to programming 1", assName: "Register Term", previousMark: "N/A", currentMark: "100"),
         Notifications(date: Date(), subName: "Intoducing to programming 1", assName: "Register Term", previousMark: "N/A", currentMark: "100")
     ]
     let colors = [
@@ -18,24 +21,54 @@ struct NotificationsView: View {
     ]
     
     var body: some View {
-        HStack{
-            Text("Notifications")
-                .font(.customFont(size: 51))
-                .foregroundColor(Color("fontColor"))
-                .multilineTextAlignment(.leading)
-                .padding()
-            Spacer()
-        }
+        
         ScrollView{
+            HStack{
+                Text("Notifications")
+                    .font(.customFont(size: 51))
+                    .foregroundColor(Color("fontColor"))
+                    .multilineTextAlignment(.leading)
+                    .padding()
+                Spacer()
+            }
             VStack{
                 ForEach(0..<notifications.count, id: \.self) { index in
-                    VStack{
+                    VStack (alignment: .leading, spacing: 18){
                         
                         HStack{
-                            Text(notifications.date, formatter: dateFormatter)
+                            Text(notifications[index].date, formatter: dateFormatter)
+                                .font(.customFont(size: 27))
+                                .foregroundColor(Color("FontWithouDark"))
+                            Spacer()
+                        }
+                        VStack (spacing: 7){
+                            HStack {
+                                Text("Updated grages:")
+                                    .font(.customFont(size: 27))
+                                    .foregroundColor(Color("NameOfNotif"))
+                                Spacer()
+                            }
+                            
+                            HStack{
+                                Text("\(notifications[index].subName):")
+                                    .font(.customFont(size: 27))
+                                    .foregroundColor(Color("FontWithouDark"))
+                                Spacer()
+                            }
+                            HStack{
+                                Text("• \(notifications[index].assName): \(notifications[index].previousMark) → \(notifications[index].currentMark)")
+                                    .font(.customFont(size: 27))
+                                    .foregroundColor(Color("FontWithouDark"))
+                                Spacer()
+                            }
                         }
                         
-                    }.background(colors[index % colors.count])
+                    }
+                    .padding()
+                    .background(colors[index % colors.count])
+                    .cornerRadius(24)
+                    .padding(.horizontal, 15)
+                        
                 }
             }
             

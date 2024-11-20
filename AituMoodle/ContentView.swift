@@ -30,7 +30,7 @@ struct ContentView: View {
                     NavigationLink(destination: ScholarShipView()) {
                         Text("Calculate scholarship")
                             .font(.customFont(size: 29))
-                            .foregroundColor(Color("fontColor"))
+                            .foregroundColor(Color("FontWithouDark"))
                             .padding()
                             .background(Color(red: 0.98, green: 0.77, blue: 0.99))
                             .cornerRadius(31)
