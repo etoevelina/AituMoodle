@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FDD8A5EC2CEE5AFB00C7AA9C /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = FDD8A5EB2CEE5AFB00C7AA9C /* RiveRuntime */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		FD0D4E1E2CEA4CE800DA166F /* AituMoodle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AituMoodle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDD8A5EC2CEE5AFB00C7AA9C /* RiveRuntime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = AituMoodle;
 			packageProductDependencies = (
+				FDD8A5EB2CEE5AFB00C7AA9C /* RiveRuntime */,
 			);
 			productName = AituMoodle;
 			productReference = FD0D4E1E2CEA4CE800DA166F /* AituMoodle.app */;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = FD0D4E152CEA4CE800DA166F;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FDD8A5EA2CEE5AFB00C7AA9C /* XCRemoteSwiftPackageReference "rive-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FD0D4E1F2CEA4CE800DA166F /* Products */;
 			projectDirPath = "";
@@ -339,6 +348,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FDD8A5EA2CEE5AFB00C7AA9C /* XCRemoteSwiftPackageReference "rive-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rive-app/rive-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.3.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FDD8A5EB2CEE5AFB00C7AA9C /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FDD8A5EA2CEE5AFB00C7AA9C /* XCRemoteSwiftPackageReference "rive-ios" */;
+			productName = RiveRuntime;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FD0D4E162CEA4CE800DA166F /* Project object */;
 }
