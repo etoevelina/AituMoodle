@@ -9,7 +9,15 @@ import Foundation
 import SwiftUI
 
 extension Font {
-    static let customFont = Font.custom("НазваниеШрифта", size: 17)
+    static func customFont(size: CGFloat) -> Font {
+        return Font.custom("OrelegaOne-Regular", size: size)
+    }
+}
+
+struct Deadline: Identifiable, Codable {
+    var id = UUID()
+    let date: Date
+    let name: String
 }
 
 
@@ -17,16 +25,14 @@ struct Subject: Identifiable, Codable {
     var id = UUID()
     let name: String
     let teacher: String
-    let deadlines: String
+    let deadlines: [Deadline]
     let lastMark: Int
     let attendance: Int
-    
-//    
-//
-//    init(id: UUID = UUID(), name: String, flagName: String, collection: String) {
-//            self.id = id
-//            self.name = name
-//            self.flagName = flagName
-//            self.collection = collection
-//        }
 }
+    
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        return formatter
+    }()
