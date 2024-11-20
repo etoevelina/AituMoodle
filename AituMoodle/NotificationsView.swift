@@ -1,10 +1,3 @@
-//
-//  NotificationsView.swift
-//  AituMoodle
-//
-//  Created by EvelinaAlexey on 21.11.2024.
-//
-
 import SwiftUI
 
 struct NotificationsView: View {
@@ -21,9 +14,8 @@ struct NotificationsView: View {
     ]
     
     var body: some View {
-        
-        ScrollView{
-            HStack{
+        VStack {
+            HStack {
                 Text("Notifications")
                     .font(.customFont(size: 51))
                     .foregroundColor(Color("fontColor"))
@@ -31,50 +23,49 @@ struct NotificationsView: View {
                     .padding()
                 Spacer()
             }
-            VStack{
-                ForEach(0..<notifications.count, id: \.self) { index in
-                    VStack (alignment: .leading, spacing: 18){
-                        
-                        HStack{
-                            Text(notifications[index].date, formatter: dateFormatter)
-                                .font(.customFont(size: 27))
-                                .foregroundColor(Color("FontWithouDark"))
-                            Spacer()
-                        }
-                        VStack (spacing: 7){
+            ScrollView {
+                VStack {
+                    ForEach(0..<notifications.count, id: \.self) { index in
+                        VStack(alignment: .leading, spacing: 18) {
                             HStack {
-                                Text("Updated grages:")
-                                    .font(.customFont(size: 27))
-                                    .foregroundColor(Color("NameOfNotif"))
-                                Spacer()
-                            }
-                            
-                            HStack{
-                                Text("\(notifications[index].subName):")
+                                Text(notifications[index].date, formatter: dateFormatter)
                                     .font(.customFont(size: 27))
                                     .foregroundColor(Color("FontWithouDark"))
                                 Spacer()
                             }
-                            HStack{
-                                Text("• \(notifications[index].assName): \(notifications[index].previousMark) → \(notifications[index].currentMark)")
-                                    .font(.customFont(size: 27))
-                                    .foregroundColor(Color("FontWithouDark"))
-                                Spacer()
+                            VStack(spacing: 7) {
+                                HStack {
+                                    Text("Updated grades:")
+                                        .font(.customFont(size: 27))
+                                        .foregroundColor(Color("NameOfNotif"))
+                                    Spacer()
+                                }
+                                HStack {
+                                    Text("\(notifications[index].subName):")
+                                        .font(.customFont(size: 27))
+                                        .foregroundColor(Color("FontWithouDark"))
+                                    Spacer()
+                                }
+                                HStack {
+                                    Text("• \(notifications[index].assName): \(notifications[index].previousMark) → \(notifications[index].currentMark)")
+                                        .font(.customFont(size: 27))
+                                        .foregroundColor(Color("FontWithouDark"))
+                                    Spacer()
+                                }
                             }
                         }
-                        
+                        .padding()
+                        .background(colors[index % colors.count])
+                        .cornerRadius(24)
+                        .padding(.horizontal, 15)
                     }
-                    .padding()
-                    .background(colors[index % colors.count])
-                    .cornerRadius(24)
-                    .padding(.horizontal, 15)
-                        
                 }
             }
-            
         }
     }
 }
+
+
 
 #Preview {
     NotificationsView()
