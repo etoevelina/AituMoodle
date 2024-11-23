@@ -10,8 +10,13 @@ import SwiftUI
 @main
 struct AituMoodleApp: App {
     var body: some Scene {
+        let defaults = UserDefaults.standard.value(forKey: "login")
         WindowGroup {
-            MainView()
+            if (defaults != nil) == true {
+                MainView()
+            } else {
+                AuthView()
+            }
         }
     }
 }

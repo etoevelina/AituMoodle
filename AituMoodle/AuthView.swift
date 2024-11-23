@@ -9,26 +9,28 @@ import SwiftUI
 import RiveRuntime
 
 struct AuthView: View {
+    // @ObservedObject var vm = ApiClient()
+    let defaults = UserDefaults.standard
     @State var token = ""
     let pic = RiveViewModel(fileName: "teddy", stateMachineName: "Login Machine", artboardName: "Teddy")
     var body: some View {
         ZStack{
+           
             
-            LinearGradient(
-            stops: [
-            Gradient.Stop(color: Color(red: 0.83, green: 0.76, blue: 1), location: 0),
-            Gradient.Stop(color: Color(red: 0.52, green: 0.08, blue: 0.64), location: 1),
-            ],
-            startPoint: UnitPoint(x: 0.5, y: 0),
-            endPoint: UnitPoint(x: 0.5, y: 1.43)
-            )
-            .ignoresSafeArea()
+            RiveViewModel(fileName: "shapes").view()
+                .ignoresSafeArea()
+                .blur(radius: 70)
+                .background(
+                    Image("Spline")
+                        .blur(radius: 50)
+                        .offset(x: 200, y: 100)
+                )
             
             VStack (){
                 VStack{
                     pic.view()
                 }
-                    .frame(height: 300)
+                .frame(height: 300)
                 
                 VStack (alignment: .center, spacing: 20 ){
                     
@@ -39,10 +41,12 @@ struct AuthView: View {
                         Text("Send your Moodle Token and let's get started")
                             .font(.customFont(size: 29))
                             .multilineTextAlignment(.center)
-                            
+                            .lineLimit(nil)
+                            .fixedSize(horizontal: false, vertical: true)
                             .padding(.top)
+                        
                     }.frame(width: 340)
-                    .foregroundColor(.white)
+                        .foregroundColor(.white)
                     
                     TextField("", text: $token)
                         .foregroundColor(.black)
@@ -53,7 +57,13 @@ struct AuthView: View {
                         .frame(maxWidth: .infinity)
                     
                     Button {
-                                            
+                        //   vm.checkToken(token: token) { isValid in
+                        //                            if isValid {
+                        //                                print("Token is valid.")
+                        //                            } else {
+                        //                                print("Token is invalid.")
+                        //                            }
+                        defaults.set(true, forKey: "login")
                     } label: {
                         Text("Login")
                             .font(.customFont(size: 27))
@@ -63,9 +73,9 @@ struct AuthView: View {
                             .background(
                                 LinearGradient(
                                     stops: [
-                                        Gradient.Stop(color: Color(red: 0.95, green: 0.49, blue: 0.99), location: 0),
                                         Gradient.Stop(color: Color(red: 0.55, green: 0.1, blue: 0.27), location: 0),
-                                        Gradient.Stop(color: Color(red: 0.87, green: 0.23, blue: 1), location: 1)
+                                        Gradient.Stop(color: Color(red: 0.91, green: 0.76, blue: 0.89), location: 0),
+                                        Gradient.Stop(color: Color(red: 1, green: 0.39, blue: 0.91), location: 1),
                                     ],
                                     startPoint: UnitPoint(x: 0, y: 0.5),
                                     endPoint: UnitPoint(x: 1, y: 0.5)
@@ -80,7 +90,7 @@ struct AuthView: View {
                     .background(Color.black.opacity(0.2))
                     .cornerRadius(30)
                     .padding(.horizontal)
-                    
+                
                 HStack{
                     Button{
                         
@@ -94,11 +104,11 @@ struct AuthView: View {
                             .cornerRadius(31)
                             .shadow(color: Color.black.opacity(0.25), radius: 2, x: 0, y: 4)
                             .overlay(
-                            RoundedRectangle(cornerRadius: 31)
-                            .inset(by: -0.5)
-                            .stroke(Color(red: 1, green: 1, blue: 1), lineWidth: 1)
+                                RoundedRectangle(cornerRadius: 31)
+                                    .inset(by: -0.5)
+                                    .stroke(Color(red: 1, green: 1, blue: 1), lineWidth: 1)
                             )
-                            
+                        
                     }
                     
                     
@@ -106,10 +116,10 @@ struct AuthView: View {
                 .padding(.top, 52)
                 
             }
-        }
+        }.ignoresSafeArea()
     }
+    
 }
-
 #Preview {
     AuthView()
 }
