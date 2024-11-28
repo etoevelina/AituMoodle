@@ -8,6 +8,21 @@
 import Foundation
 import SwiftUI
 
+
+struct RoundedCornerShape: Shape { // 1
+    let radius: CGFloat
+    let corners: UIRectCorner
+
+    func path(in rect: CGRect) -> Path { // 2
+        let path = UIBezierPath(
+            roundedRect: rect,
+            byRoundingCorners: corners,
+            cornerRadii: CGSize(width: radius, height: radius)
+        )
+        return Path(path.cgPath)
+    }
+}
+
 extension Font {
     static func customFont(size: CGFloat) -> Font {
         return Font.custom("OrelegaOne-Regular", size: size)

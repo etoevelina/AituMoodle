@@ -20,7 +20,7 @@ struct MainView: View {
                     case .home:
                         ContentView()
                     case .user:
-                        Text ("user")
+                        UserView()
                     }
                 }
                 TupBarView()

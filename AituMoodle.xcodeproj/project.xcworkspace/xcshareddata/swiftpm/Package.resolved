@@ -1,5 +1,5 @@
 {
-  "originHash" : "0ed1a20ef167ff6bbd7e233d8316ce8089f144b9619fb921d55eb1b69ffdfd4c",
+  "originHash" : "b8f713fc84878628fc0a2eaa78331606d7eef53af0ec00eb6399db6577a9ae42",
   "pins" : [
     {
       "identity" : "rive-ios",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "211a486001bf543597a368d1cb0bc0fa060621b8",
         "version" : "6.3.7"
+      }
+    },
+    {
+      "identity" : "settingsicongenerator",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sparrowcode/SettingsIconGenerator",
+      "state" : {
+        "revision" : "d2070ad86ae7834151f43418eaa57f05380d5aac",
+        "version" : "1.0.2"
       }
     }
   ],
