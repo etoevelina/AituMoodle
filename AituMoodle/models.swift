@@ -60,3 +60,9 @@ struct Notifications: Identifiable, Codable{
     let previousMark: String
     let currentMark: String
 }
+
+struct User: Codable {
+    let username: String
+    let fullname: String
+    let userid: Int
+}
