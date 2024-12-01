@@ -25,11 +25,11 @@ struct UserView: View {
             )
             .ignoresSafeArea()
             
+            
             VStack {
                 Spacer().frame(height: 90)
                 VStack {
                     VStack{
-                        ScrollView {
                             HStack{
                                 Text("Statistics")
                                     .font(.customFont(size: 43))
@@ -106,8 +106,8 @@ struct UserView: View {
                             }
                             
                             
+                        Spacer()
                             
-                            }
                         }
                     }
                     .padding(.top, 50)
