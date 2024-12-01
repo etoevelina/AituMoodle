@@ -12,6 +12,7 @@ struct UserView: View {
     @State private var notificationsEnabled: Bool = false
     @State private var selectedOption: String = "None"
     @State private var showAlert: Bool = false
+    @ObservedObject private var apiClient = ApiClient()
 
     var body: some View {
         ZStack {
@@ -26,13 +27,19 @@ struct UserView: View {
             .ignoresSafeArea()
             
             
+            VStack{
+                Text("Account")
+                Text("user name")
+                Spacer()
+            }
+            
             VStack {
-                Spacer().frame(height: 90)
+                Spacer().frame(height: 130)
                 VStack {
                     VStack{
                             HStack{
                                 Text("Statistics")
-                                    .font(.customFont(size: 43))
+                                    .font(.customFont(size: 35))
                                     .foregroundColor(Color("FontWithouDark"))
                                 Spacer()
                             }
@@ -43,64 +50,67 @@ struct UserView: View {
                             VStack {
                                 HStack{
                                     Text("Settings")
-                                        .font(.customFont(size: 43))
+                                        .font(.customFont(size: 35))
                                         .foregroundColor(Color("FontWithouDark"))
                                     Spacer()
                                 }
                                 .padding(.leading,30)
                                 
-                                Button{
-                                    openSettings()
-                                } label: {
-                                    HStack{
-                                        SettingsIcon(systemName: "textformat.characters", backgroundColor: .yellow)
-                                            .padding(.leading)
-                                        Text("Language")
-                                            .font(.customFont(size: 20))
-                                            .foregroundColor(Color.blue)
-                                        Spacer()
-                                        Image(systemName: "greaterthan")
-                                            .padding(.trailing)
-                                    }.frame(maxWidth: .infinity, minHeight: 50)
-                                        .background(Color.white)
-                                        .cornerRadius(10)
-                                        .padding(.horizontal, 20)
-                                }
-                                
-                                NotificationSettingsView()
-                                
-                                Button{
-                                    openSettings()
-                                } label: {
-                                    HStack{
-                                        SettingsIcon(systemName: "graduationcap", backgroundColor: .green)
-                                            .padding(.leading)
-                                        Text("How to use it?")
-                                            .font(.customFont(size: 20))
-                                            .foregroundColor(Color.blue)
-                                        Spacer()
-                                        
-                                    }.frame(maxWidth: .infinity, minHeight: 50)
-                                        .background(Color.white)
-                                        .cornerRadius(10)
-                                        .padding(.horizontal, 20)
-                                }
-                                
-                                Button{
-                                    openSettings()
-                                } label: {
-                                    HStack{
-                                        SettingsIcon(systemName: "rectangle.portrait.and.arrow.forward", backgroundColor: .purple)
-                                            .padding(.leading)
-                                        Text("Sign Out")
-                                            .font(.customFont(size: 20))
-                                            .foregroundColor(Color.blue)
-                                        Spacer()
-                                        
-                                    }.frame(maxWidth: .infinity, minHeight: 50)
-                                        .background(Color.white)
-                                        .cornerRadius(10)
-                                        .padding(.horizontal, 20)
+                                VStack {
+                                    Button{
+                                        openSettings()
+                                    } label: {
+                                        HStack{
+                                            SettingsIcon(systemName: "textformat.characters", backgroundColor: .yellow)
+                                                .padding(.leading)
+                                            Text("Language")
+                                                .font(.customFont(size: 20))
+                                                .foregroundColor(Color.blue)
+                                            Spacer()
+                                        }.frame(maxWidth: .infinity, minHeight: 50)
+                                            .background(Color.white)
+                                            .cornerRadius(10)
+                                            .padding(.horizontal, 20)
+                                    }
+                                    
+                                    
+                                    NotificationSettingsView()
+                                    
+                                    Button{
+                                        openSettings()
+                                    } label: {
+                                        HStack{
+                                            SettingsIcon(systemName: "graduationcap", backgroundColor: .green)
+                                                .padding(.leading)
+                                            Text("How to use it?")
+                                                .font(.customFont(size: 20))
+                                                .foregroundColor(Color.blue)
+                                            Spacer()
+                                            
+                                        }.frame(maxWidth: .infinity, minHeight: 50)
+                                            .background(Color.white)
+                                            .cornerRadius(10)
+                                            .padding(.horizontal, 20)
+                                    }
+                                    
+                                    Button{
+                                        openSettings()
+                                    } label: {
+                                        HStack{
+                                            SettingsIcon(systemName: "rectangle.portrait.and.arrow.forward", backgroundColor: .purple)
+                                                .padding(.leading)
+                                            Text("Sign Out")
+                                                .font(.customFont(size: 20))
+                                                .foregroundColor(Color.blue)
+                                            Spacer()
+                                            
+                                        }.frame(maxWidth: .infinity, minHeight: 50)
+                                            .background(Color.white)
+                                            .cornerRadius(10)
+                                            .padding(.horizontal, 20)
+                                    }
+                                    
+                                    
                                 }
 
                             }
@@ -117,6 +127,9 @@ struct UserView: View {
                     .edgesIgnoringSafeArea(.bottom)
                 }
             }
+        .onAppear {
+            apiClient.fetchUser(token: "6f9484c897509fa5b7f541ff879f945f")
+        }
         .alert(isPresented: $showAlert) {
             Alert(
                 title: Text("Notifications Disabled"),

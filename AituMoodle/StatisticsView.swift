@@ -18,16 +18,16 @@ struct RingChart: View {
         return ZStack {
             Circle()
                 .stroke(Color.gray.opacity(0.2), style: StrokeStyle(lineWidth: lineWidth))
-                .frame(width: 100, height: 100)
+                .frame(width: 90, height: 90)
             
             Circle()
                 .trim(from: 0, to: CGFloat(percentage / 100))
                 .stroke(gradient, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
-                .frame(width: 100, height: 100)
+                .frame(width: 90, height: 90)
                 .rotationEffect(Angle(degrees: -90))
             
             Text("\(formattedPercentage)%")
-                .font(.title)
+                .font(.system(size: 20))
                 .fontWeight(.bold)
         }
     }
@@ -52,7 +52,7 @@ struct StatisticsView: View {
                     )
                     
                     Text("Attendance")
-                        .font(.customFont(size: 25))
+                        .font(.customFont(size: 20))
                         .foregroundColor(Color("FontWithouDark"))
                         .padding()
                 }
@@ -73,7 +73,7 @@ struct StatisticsView: View {
                     )
                     
                     Text("GPA")
-                        .font(.customFont(size: 25))
+                        .font(.customFont(size: 20))
                         .foregroundColor(Color("FontWithouDark"))
                         .padding()
                 }.padding(.trailing)
