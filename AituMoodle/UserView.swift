@@ -12,7 +12,8 @@ struct UserView: View {
     @State private var notificationsEnabled: Bool = false
     @State private var selectedOption: String = "None"
     @State private var showAlert: Bool = false
-    @ObservedObject private var apiClient = ApiClient()
+    @StateObject var apiClient = ApiClient.shared
+    @State private var user: User = User(username: "-", fullname: "-", userid: 0)
 
     var body: some View {
         ZStack {
@@ -28,8 +29,8 @@ struct UserView: View {
             
             
             VStack{
-                Text("Account")
-                Text("user name")
+                Text(user.username)
+                Text(user.fullname)
                 Spacer()
             }
             
@@ -128,7 +129,15 @@ struct UserView: View {
                 }
             }
         .onAppear {
-            apiClient.fetchUser(token: "6f9484c897509fa5b7f541ff879f945f")
+            apiClient.fetchUser(token: "6f9484c897509fa5b7f541ff879f945f") { result in
+                switch result {
+                case .success(let decodedUser):
+                    user = decodedUser
+                    print("success")
+                case .failure(_):
+                    print("failure")
+                }
+            }
         }
         .alert(isPresented: $showAlert) {
             Alert(
