@@ -58,7 +58,7 @@ struct SubCardView: View {
                            VStack{
                               
                                    
-                                   Text("Teacher: \(subjects[index].teacher)")
+                                   Text("teacher \(subjects[index].teacher)")
                                        .font(.customFont(size: 23))
                                        .foregroundColor(Color(red: 0.22, green: 0.19, blue: 0.15))
                                
@@ -71,7 +71,7 @@ struct SubCardView: View {
                            
                            HStack{
                                VStack (alignment: .leading, spacing: 5) {
-                                       Text("Deadlines")
+                                       Text("deadlines")
                                        .font(.customFont(size: 23))
                                        .foregroundColor(Color(red: 0.22, green: 0.19, blue: 0.15))
                                        .padding(.top)
@@ -91,7 +91,7 @@ struct SubCardView: View {
                                
                                VStack{
                                    VStack{
-                                       Text("Last Mark")
+                                       Text("lastMark")
                                            .font(.customFont(size: 23))
                                            .foregroundColor(Color(red: 0.22, green: 0.19, blue: 0.15))
                                            .multilineTextAlignment(.leading)
@@ -107,7 +107,7 @@ struct SubCardView: View {
                                        .shadow(color: Color(red: 0, green: 0, blue: 0).opacity(0.25), radius: 2, x: 1, y: 6)
                                    
                                    VStack{
-                                       Text("Attendance")
+                                       Text("attendance")
                                            .font(.customFont(size: 23))
                                            .foregroundColor(Color(red: 0.22, green: 0.19, blue: 0.15))
                                            .multilineTextAlignment(.leading)

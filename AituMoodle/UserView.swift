@@ -38,7 +38,7 @@ struct UserView: View {
                 VStack {
                     VStack{
                             HStack{
-                                Text("Statistics")
+                                Text("statistics")
                                     .font(.customFont(size: 35))
                                     .foregroundColor(Color("FontWithouDark"))
                                 Spacer()
@@ -49,7 +49,7 @@ struct UserView: View {
                             
                             VStack {
                                 HStack{
-                                    Text("Settings")
+                                    Text("settings")
                                         .font(.customFont(size: 35))
                                         .foregroundColor(Color("FontWithouDark"))
                                     Spacer()
@@ -63,7 +63,7 @@ struct UserView: View {
                                         HStack{
                                             SettingsIcon(systemName: "textformat.characters", backgroundColor: .yellow)
                                                 .padding(.leading)
-                                            Text("Language")
+                                            Text("language")
                                                 .font(.customFont(size: 20))
                                                 .foregroundColor(Color.blue)
                                             Spacer()
@@ -82,7 +82,7 @@ struct UserView: View {
                                         HStack{
                                             SettingsIcon(systemName: "graduationcap", backgroundColor: .green)
                                                 .padding(.leading)
-                                            Text("How to use it?")
+                                            Text("howToUse")
                                                 .font(.customFont(size: 20))
                                                 .foregroundColor(Color.blue)
                                             Spacer()
@@ -99,7 +99,7 @@ struct UserView: View {
                                         HStack{
                                             SettingsIcon(systemName: "rectangle.portrait.and.arrow.forward", backgroundColor: .purple)
                                                 .padding(.leading)
-                                            Text("Sign Out")
+                                            Text("signOut")
                                                 .font(.customFont(size: 20))
                                                 .foregroundColor(Color.blue)
                                             Spacer()
@@ -132,8 +132,8 @@ struct UserView: View {
         }
         .alert(isPresented: $showAlert) {
             Alert(
-                title: Text("Notifications Disabled"),
-                message: Text("Please enable notifications in Settings to receive alerts."),
+                title: Text("NotificationsDisabled"),
+                message: Text("PleaseNotifications"),
                 dismissButton: .default(Text("OK"))
             )
         }

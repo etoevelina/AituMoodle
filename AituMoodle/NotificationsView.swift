@@ -16,7 +16,7 @@ struct NotificationsView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Notifications")
+                Text("notif")
                     .font(.customFont(size: 51))
                     .foregroundColor(Color("fontColor"))
                     .multilineTextAlignment(.leading)
@@ -35,7 +35,7 @@ struct NotificationsView: View {
                             }
                             VStack(spacing: 7) {
                                 HStack {
-                                    Text("Updated grades:")
+                                    Text("updatedGrades")
                                         .font(.customFont(size: 27))
                                         .foregroundColor(Color("NameOfNotif"))
                                     Spacer()

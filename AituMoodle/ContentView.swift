@@ -13,7 +13,7 @@ struct ContentView: View {
         
             VStack{
                 HStack{
-                    Text("Welcome back!")
+                    Text("welcome")
                         .font(.customFont(size: 51))
                         .foregroundColor(Color("fontColor"))
                         .multilineTextAlignment(.leading)
@@ -28,7 +28,7 @@ struct ContentView: View {
                 
                 VStack{
                     NavigationLink(destination: ScholarShipView()) {
-                        Text("Calculate scholarship")
+                        Text("scholarship")
                             .font(.customFont(size: 29))
                             .foregroundColor(Color("FontWithouDark"))
                             .padding()

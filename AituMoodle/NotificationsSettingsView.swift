@@ -18,7 +18,7 @@ struct NotificationSettingsView: View {
                 .padding(.leading)
             
             Toggle(isOn: $notificationsEnabled) {
-                Text("Notifications")
+                Text("notif")
                     .font(.customFont(size: 20))
                     .foregroundColor(Color.blue)
             }
@@ -35,8 +35,8 @@ struct NotificationSettingsView: View {
         .padding(.horizontal, 20)
         .alert(isPresented: $showAlert) {
             Alert(
-                title: Text("Notifications Disabled"),
-                message: Text("Please enable notifications in Settings to receive alerts."),
+                title: Text("NotificationsDisabled"),
+                message: Text("PleaseNotifications"),
                 dismissButton: .default(Text("OK"))
             )
         }

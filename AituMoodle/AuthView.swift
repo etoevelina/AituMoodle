@@ -36,9 +36,9 @@ struct AuthView: View {
                     
                     
                     VStack {
-                        Text("Hi There!")
+                        Text("hi")
                             .font(.customFont(size: 24))
-                        Text("Send your Moodle Token and let's get started")
+                        Text("send")
                             .font(.customFont(size: 29))
                             .multilineTextAlignment(.center)
                             .lineLimit(nil)
@@ -65,7 +65,7 @@ struct AuthView: View {
                         //                            }
                         defaults.set(true, forKey: "login")
                     } label: {
-                        Text("Login")
+                        Text("login")
                             .font(.customFont(size: 27))
                             .multilineTextAlignment(.center)
                             .foregroundColor(.white)
@@ -95,7 +95,7 @@ struct AuthView: View {
                     Button{
                         
                     } label:{
-                        Text("How to find your token?")
+                        Text("howToFind")
                             .font(.customFont(size: 27))
                             .multilineTextAlignment(.center)
                             .foregroundColor(.white)

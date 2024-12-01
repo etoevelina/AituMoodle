@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  AituMoodle
+
+  Created by Эвелина Пенькова on 01.12.2024.
+  
+*/
+
+
+"hi" = "Hi There!";
+"send" = "Send your Moodle Token and let's get started";
+"login" = "Login";
+"howToFind" = "How to find your token?";
+"welcome" = "Welcome back!";
+"scholarship" = "Calculate scholarship";
+"notif" = "Notifications";
+"NotificationsDisabled" = "Notifications Disabled";
+"PleaseNotifications" = "Please enable notifications in Settings to receive alerts.";
+"updatedGrades" = "Updated grades:";
+"attend" = "Attendance";
+"teacher" = "Teacher:";
+"deadlines" = "Deadlines";
+"lastMark" = "Last Mark";
+"attendance" = "Attendance";
+"statistics" = "Statistics";
+"settings" = "Settings";
+"language" = "Language";
+"howToUse" = "How to use it?";
+"signOut" = "Sign Out";

@@ -51,7 +51,7 @@ struct StatisticsView: View {
                         )
                     )
                     
-                    Text("Attendance")
+                    Text("attend")
                         .font(.customFont(size: 20))
                         .foregroundColor(Color("FontWithouDark"))
                         .padding()
