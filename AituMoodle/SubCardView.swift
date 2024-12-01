@@ -58,7 +58,7 @@ struct SubCardView: View {
                            VStack{
                               
                                    
-                                   Text("teacher \(subjects[index].teacher)")
+                               Text("\(NSLocalizedString("teacher", comment: "")) \(subjects[index].teacher)")
                                        .font(.customFont(size: 23))
                                        .foregroundColor(Color(red: 0.22, green: 0.19, blue: 0.15))
                                
