@@ -12,6 +12,7 @@ struct UserView: View {
     @State private var notificationsEnabled: Bool = false
     @State private var selectedOption: String = "None"
     @State private var showAlert: Bool = false
+    @ObservedObject private var apiClient = ApiClient()
 
     var body: some View {
         ZStack {
@@ -117,6 +118,9 @@ struct UserView: View {
                     .edgesIgnoringSafeArea(.bottom)
                 }
             }
+        .onAppear {
+            apiClient.fetchUser(token: "6f9484c897509fa5b7f541ff879f945f")
+        }
         .alert(isPresented: $showAlert) {
             Alert(
                 title: Text("Notifications Disabled"),
