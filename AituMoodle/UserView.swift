@@ -152,7 +152,7 @@ struct UserView: View {
                     user = decodedUser
                     print("success")
                 case .failure(let error):
-                    print("Error\(error)")
+                    print("Error: \(error)")
                 }
             }
         }
