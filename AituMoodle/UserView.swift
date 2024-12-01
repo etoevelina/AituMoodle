@@ -5,13 +5,14 @@
 //  Created by Эвелина Пенькова on 30.11.2024.
 //
 import SwiftUI
+import UserNotifications
 @testable import SettingsIconGenerator
 
 struct UserView: View {
-        @State private var notificationsEnabled: Bool = false
-        @State private var selectedOption: String = "None"
+    @State private var notificationsEnabled: Bool = false
+    @State private var selectedOption: String = "None"
+    @State private var showAlert: Bool = false
 
-    
     var body: some View {
         ZStack {
             LinearGradient(
@@ -25,7 +26,7 @@ struct UserView: View {
             .ignoresSafeArea()
             
             VStack {
-                Spacer().frame(height: 150)
+                Spacer().frame(height: 90)
                 VStack {
                     VStack{
                         ScrollView {
@@ -38,7 +39,6 @@ struct UserView: View {
                             .padding(.leading,30)
                             
                             StatisticsView()
-                            
                             
                             VStack {
                                 HStack{
@@ -53,7 +53,7 @@ struct UserView: View {
                                     openSettings()
                                 } label: {
                                     HStack{
-                                        SettingsIcon(systemName: "chart.line.uptrend.xyaxis", backgroundColor: .yellow)
+                                        SettingsIcon(systemName: "textformat.characters", backgroundColor: .yellow)
                                             .padding(.leading)
                                         Text("Language")
                                             .font(.customFont(size: 20))
@@ -117,47 +117,42 @@ struct UserView: View {
                     .edgesIgnoringSafeArea(.bottom)
                 }
             }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Notifications Disabled"),
+                message: Text("Please enable notifications in Settings to receive alerts."),
+                dismissButton: .default(Text("OK"))
+            )
         }
-        
+        }
+    
+    
     func openSettings() {
-                guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else {
-                    return
-                }
-                if UIApplication.shared.canOpenURL(settingsURL) {
-                    UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+        guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+        if UIApplication.shared.canOpenURL(settingsURL) {
+            UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+        }
+    }
+    
+    func requestNotificationPermission() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            DispatchQueue.main.async {
+                if granted {
+                    print("Permission granted")
+                } else {
+                    showAlert = true
+                    notificationsEnabled = false
                 }
             }
+        }
     }
-
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         UserView()
     }
 }
-struct NotificationSettingsView: View {
-    @State private var notificationsEnabled: Bool = false
-    @State private var selectedOption: String = "None"
-    
-    var body: some View {
-        HStack {
-            SettingsIcon(systemName: "bell", backgroundColor: .cyan)
-                .padding(.leading)
-            
-            Toggle(isOn: $notificationsEnabled) {
-                
-               
-                Text("Notifications")
-                    .font(.customFont(size: 20))
-                    .foregroundColor(Color.blue)
-                
-            }.padding(.trailing)
-            
-            
-        }
-        .frame(maxWidth: .infinity, minHeight: 50)
-        .background(Color.white)
-        .cornerRadius(10)
-        .padding(.horizontal, 20)
-    }
-}
+
