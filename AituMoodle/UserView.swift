@@ -12,7 +12,8 @@ struct UserView: View {
     @State private var notificationsEnabled: Bool = false
     @State private var selectedOption: String = "None"
     @State private var showAlert: Bool = false
-    @ObservedObject private var apiClient = ApiClient()
+    @StateObject var apiClient = ApiClient.shared
+    @State private var user: User = User(username: "-", fullname: "-", userid: 0)
 
     var body: some View {
         ZStack {
@@ -28,10 +29,15 @@ struct UserView: View {
             
             
             VStack{
-                Text("Account")
-                Text("user name")
+                Text(user.fullname)
+                    .font(.customFont(size: 40))
+                
+                Text(user.username)
+                    .font(.customFont(size: 25))
+                
                 Spacer()
-            }
+            }.foregroundColor(Color("FontWithouDark"))
+                .padding(.top)
             
             VStack {
                 Spacer().frame(height: 130)
@@ -72,9 +78,21 @@ struct UserView: View {
                                             .cornerRadius(10)
                                             .padding(.horizontal, 20)
                                     }
-                                    
-                                    
-                                    NotificationSettingsView()
+                                    Button{
+                                        openSettings()
+                                    } label: {
+                                        HStack{
+                                            SettingsIcon(systemName: "bell", backgroundColor: .cyan)
+                                                .padding(.leading)
+                                            Text("notif")
+                                                .font(.customFont(size: 20))
+                                                .foregroundColor(Color.blue)
+                                            Spacer()
+                                        }.frame(maxWidth: .infinity, minHeight: 50)
+                                            .background(Color.white)
+                                            .cornerRadius(10)
+                                            .padding(.horizontal, 20)
+                                    }
                                     
                                     Button{
                                         openSettings()
@@ -128,7 +146,15 @@ struct UserView: View {
                 }
             }
         .onAppear {
-            apiClient.fetchUser(token: "6f9484c897509fa5b7f541ff879f945f")
+            apiClient.fetchUser(token: "6f9484c897509fa5b7f541ff879f945f") { result in
+                switch result {
+                case .success(let decodedUser):
+                    user = decodedUser
+                    print("success")
+                case .failure(let error):
+                    print("Error\(error)")
+                }
+            }
         }
         .alert(isPresented: $showAlert) {
             Alert(

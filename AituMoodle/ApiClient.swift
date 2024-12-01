@@ -19,37 +19,47 @@ enum Link {
     }
 }
 
+enum NetworkError: Error {
+    case noData
+    case notFound
+    case decodingError
+}
+
 final class ApiClient: ObservableObject {
+        
     
-    @Published var user: User?
+    init() {}
+    static let shared = ApiClient()
     
-    func fetchUser(token: String) {
+    func fetchUser(token: String, completion: @escaping (Result<User, NetworkError>) -> Void) {
         let fetchRequest = URLRequest(url: Link.user(token: token).url)
         
-        URLSession.shared.dataTask(with: fetchRequest) { [weak self] (data, response, error) in
-            if let error = error {
-                print("Error in session: \(error.localizedDescription)")
+        URLSession.shared.dataTask(with: fetchRequest) { (data, response, error) -> Void in
+            if error != nil {
+                print("Error in session != nil")
+                completion(.failure(.noData))
                 return
-            }
-            
-            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-                print("Invalid response from server")
-                return
-            }
-            
-            guard let safeData = data else {
-                print("No data received")
-                return
-            }
-            
-            do {
-                let decodedUser = try JSONDecoder().decode(User.self, from: safeData)
-                DispatchQueue.main.async {
-                    self?.user = decodedUser
+            } else {
+                
+                let httpResponse = response as? HTTPURLResponse
+                print("status code: \(httpResponse?.statusCode ?? 0)")
+                
+                if httpResponse?.statusCode == 404 {
+                    completion(.failure(.notFound))
+                } else {
+                    guard let safeData = data else { return }
+                    
+                    do {
+                        let decodedUser = try JSONDecoder().decode(User.self, from: safeData)
+                        
+                        completion(.success(decodedUser))
+                    } catch let decodeError{
+                        print("Decoding error: \(decodeError.localizedDescription)")
+                        completion(.failure(.decodingError))
+                    }
                 }
-            } catch {
-                print("Failed to decode user: \(error.localizedDescription)")
             }
+         
         }.resume()
     }
     
