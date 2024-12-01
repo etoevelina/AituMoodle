@@ -48,46 +48,64 @@ struct UserView: View {
                                     Spacer()
                                 }
                                 .padding(.leading,30)
-                                NavigationLink {
-                                    ScholarShipView()
-                                        .navigationTitle("Profile")
+                                
+                                Button{
+                                    openSettings()
                                 } label: {
                                     HStack{
-                                        SettingsIcon(systemName: "person", backgroundColor: .purple)
+                                        SettingsIcon(systemName: "chart.line.uptrend.xyaxis", backgroundColor: .yellow)
                                             .padding(.leading)
-                                        Text("Profile")
+                                        Text("Language")
                                             .font(.customFont(size: 20))
                                             .foregroundColor(Color.blue)
                                         Spacer()
                                         Image(systemName: "greaterthan")
                                             .padding(.trailing)
-                                    }
-                                    .frame(maxWidth: .infinity, minHeight: 50)
-                                    .background(Color.white)
-                                    .cornerRadius(10)
-                                    .padding(.horizontal, 20)
+                                    }.frame(maxWidth: .infinity, minHeight: 50)
+                                        .background(Color.white)
+                                        .cornerRadius(10)
+                                        .padding(.horizontal, 20)
                                 }
+                                
+                                NotificationSettingsView()
+                                
+                                Button{
+                                    openSettings()
+                                } label: {
+                                    HStack{
+                                        SettingsIcon(systemName: "graduationcap", backgroundColor: .green)
+                                            .padding(.leading)
+                                        Text("How to use it?")
+                                            .font(.customFont(size: 20))
+                                            .foregroundColor(Color.blue)
+                                        Spacer()
+                                        
+                                    }.frame(maxWidth: .infinity, minHeight: 50)
+                                        .background(Color.white)
+                                        .cornerRadius(10)
+                                        .padding(.horizontal, 20)
+                                }
+                                
+                                Button{
+                                    openSettings()
+                                } label: {
+                                    HStack{
+                                        SettingsIcon(systemName: "rectangle.portrait.and.arrow.forward", backgroundColor: .purple)
+                                            .padding(.leading)
+                                        Text("Sign Out")
+                                            .font(.customFont(size: 20))
+                                            .foregroundColor(Color.blue)
+                                        Spacer()
+                                        
+                                    }.frame(maxWidth: .infinity, minHeight: 50)
+                                        .background(Color.white)
+                                        .cornerRadius(10)
+                                        .padding(.horizontal, 20)
+                                }
+
                             }
                             
-                            Button{
-                                openSettings()
-                            } label: {
-                                HStack{
-                                    SettingsIcon(systemName: "chart.line.uptrend.xyaxis", backgroundColor: .yellow)
-                                        .padding(.leading)
-                                    Text("Language")
-                                        .font(.customFont(size: 20))
-                                        .foregroundColor(Color.blue)
-                                    Spacer()
-                                    Image(systemName: "greaterthan")
-                                        .padding(.trailing)
-                                }.frame(maxWidth: .infinity, minHeight: 50)
-                                    .background(Color.white)
-                                    .cornerRadius(10)
-                                    .padding(.horizontal, 20)
-                            }
                             
-                            NotificationSettingsView()
                             
                             }
                         }
@@ -123,7 +141,7 @@ struct NotificationSettingsView: View {
     
     var body: some View {
         HStack {
-            SettingsIcon(systemName: "bell", backgroundColor: .blue)
+            SettingsIcon(systemName: "bell", backgroundColor: .cyan)
                 .padding(.leading)
             
             Toggle(isOn: $notificationsEnabled) {
