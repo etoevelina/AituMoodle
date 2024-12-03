@@ -21,7 +21,7 @@ enum Link {
             return URL(string: "http://31.129.107.189:8080/get_courses/\(token)")!
         case .grade(let token):
             return URL(string: "http://31.129.107.189:8080/get_grades/\(token)")!
-        case .deadline(token: let token):
+        case .deadline(let token):
             return URL(string: "http://31.129.107.189:8080/get_deadlines/\(token)")!
         }
     }

@@ -67,14 +67,13 @@ struct User: Decodable {
     let userid: Int
 }
 
-//struct Courses: Decodable {
-//    let course: [Course]
-//}
-
 struct Course: Decodable {
     let id: Int
     let fullname: String
     let completed: Optional<Bool>
+    var name: Optional<String>
+    var teacher: Optional<String>
+    var grades: Optional<[GradeItem]>
 }
 
 struct Grades: Decodable {

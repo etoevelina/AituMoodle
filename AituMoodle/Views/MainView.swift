@@ -18,12 +18,12 @@ struct MainView: View {
                     case .bell:
                         NotificationsView()
                     case .home:
-                        ContentView()
+                        HomeView()
                     case .user:
                         UserView()
                     }
                 }
-                TupBarView()
+                TapBarView()
             }.transition(.opacity)
             .animation(.easeInOut, value: selectedTab)
             

@@ -8,7 +8,7 @@
 import SwiftUI
 import RiveRuntime
 
-struct TupBarView: View {
+struct TapBarView: View {
     let icon = RiveViewModel(fileName: "icons", stateMachineName: "HOME_interactivity", artboardName: "HOME")
     @AppStorage("selectedTab") var selectedTab: Tab = .home
     
@@ -58,7 +58,7 @@ struct TupBarView: View {
     
 }
 #Preview {
-    TupBarView()
+    TapBarView()
 }
 
 

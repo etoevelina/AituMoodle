@@ -13,7 +13,7 @@ struct UserView: View {
     @State private var selectedOption: String = "None"
     @State private var showAlert: Bool = false
     @StateObject var apiClient = ApiClient.shared
-    @State private var user: User = User(username: "-", fullname: "-", userid: 0)
+
 
     var body: some View {
         ZStack {
@@ -29,10 +29,10 @@ struct UserView: View {
             
             
             VStack{
-                Text(user.fullname)
+                Text(apiClient.user?.fullname ?? "-")
                     .font(.customFont(size: 40))
                 
-                Text(user.username)
+                Text(apiClient.user?.fullname ?? "-")
                     .font(.customFont(size: 25))
                 
                 Spacer()
@@ -146,13 +146,20 @@ struct UserView: View {
                 }
             }
         .onAppear {
-            apiClient.fetchUser(token: "6f9484c897509fa5b7f541ff879f945f") { result in
-                switch result {
-                case .success(let decodedUser):
-                    user = decodedUser
-                    print("success")
-                case .failure(let error):
-                    print("Error: \(error)")
+            Task {
+                do {
+                    try await apiClient.fetchUser(token: "6f9484c897509fa5b7f541ff879f945f")
+                } catch let error as NetworkError {
+                    switch error {
+                    case .noData:
+                        print("No data received")
+                    case .notFound:
+                        print("User not found")
+                    case .decodingError:
+                        print("Error decoding user data")
+                    }
+                } catch {
+                    print("Unexpected error: \(error)")
                 }
             }
         }
