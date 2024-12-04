@@ -8,17 +8,6 @@
 import SwiftUI
 
 struct SubCardView: View {
-    //    let subjects = [
-    //        Subject (name: "Linear Algebra 1", teacher: "Aynur Bakeniva", deadlines: [
-    //            Deadline(date: Date(), name: "Homework 1"),
-    //            Deadline(date: Date().addingTimeInterval(604800), name: "Project 1")
-    //        ], lastMark: 90, attendance: 100),
-    //
-    //        Subject (name: "Introducing to programming 1", teacher: "Assel Bakeniva", deadlines: [
-    //            Deadline(date: Date(), name: "Homework 1"),
-    //            Deadline(date: Date().addingTimeInterval(604800), name: "Project 1")
-    //        ], lastMark: 90, attendance: 100)
-    //    ]
 
     
     let gradients = [
@@ -105,6 +94,22 @@ struct SubCardView: View {
         }
         .onAppear {
             Task {
+                
+                do {
+                    try await apiClient.fetchCourses(token: "6f9484c897509fa5b7f541ff879f945f")
+                } catch let error as NetworkError {
+                    switch error {
+                    case .noData:
+                        print("No data received")
+                    case .notFound:
+                        print("Courses not found")
+                    case .decodingError:
+                        print("Error decoding courses data")
+                    }
+                } catch {
+                    print("Unexpected error: \(error)")
+                }
+                
                 do {
                     try await apiClient.fetchGrades(token: "6f9484c897509fa5b7f541ff879f945f")
                 } catch let error as NetworkError {
@@ -128,6 +133,6 @@ struct SubCardView: View {
 //    private func indexingGrades(courses: [Course], grades: [])
 }
 
-//#Preview {
-//    SubCardView()
-//}
+#Preview {
+    MainView()
+}
