@@ -32,7 +32,7 @@ struct UserView: View {
                 Text(apiClient.user?.fullname ?? "-")
                     .font(.customFont(size: 40))
                 
-                Text(apiClient.user?.fullname ?? "-")
+                Text(apiClient.user?.username ?? "-")
                     .font(.customFont(size: 25))
                 
                 Spacer()

@@ -47,8 +47,8 @@ struct SubCardView: View {
                                     .font(.customFont(size: 30))
                                     .foregroundColor(.white)
                             }
-                        }
-                        .frame(width: 314)
+                        }.padding(.bottom, 30)
+
                         VStack {
                             if index < apiClient.courses?.count ?? 0 {
                                 Text("\(NSLocalizedString("teacher", comment: "")) \(apiClient.courses?[index].teacher ?? "-")")
@@ -148,5 +148,5 @@ struct SubCardView: View {
 }
 
 #Preview {
-    MainView()
+//    MainView()
 }
