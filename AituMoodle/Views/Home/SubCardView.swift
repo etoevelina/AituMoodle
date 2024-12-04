@@ -44,45 +44,59 @@ struct SubCardView: View {
                                 .font(.system(size: 35))
                             if index < apiClient.courses?.count ?? 0 {
                                 Text(apiClient.courses?[index].name ?? "-")
-                                    .font(.customFont(size: 33))
+                                    .font(.customFont(size: 30))
                                     .foregroundColor(.white)
                             }
                         }
                         .frame(width: 314)
-                        VStack{
-                            
+                        VStack {
                             if index < apiClient.courses?.count ?? 0 {
-                                
                                 Text("\(NSLocalizedString("teacher", comment: "")) \(apiClient.courses?[index].teacher ?? "-")")
                                     .font(.customFont(size: 23))
                                     .foregroundColor(Color(red: 0.22, green: 0.19, blue: 0.15))
+                                    .lineLimit(nil)
+                                    .multilineTextAlignment(.leading)
+                                    .padding(10)
                             }
-                            
                         }
                         .foregroundColor(.clear)
-                        .frame(width: 297, height: 42)
+                        .frame(maxWidth: .infinity)
                         .background(Color(red: 0.91, green: 0.87, blue: 0.28))
-                        .cornerRadius(31)
+                        .cornerRadius(12)
                         .shadow(color: Color(red: 0, green: 0, blue: 0).opacity(0.25), radius: 2, x: 1, y: 6)
+                        .padding(.horizontal)
                         
-                        HStack{
+                        VStack{
                             NavigationLink {
                                 
                             } label: {
                                 Text("Deadlines")
+                                    .font(.customFont(size: 23))
+                                    .foregroundColor(Color("fontColor"))
+                                    .frame(maxWidth: .infinity, maxHeight: 66)
+                                    .background(Color(red: 0.95, green: 0.95, blue: 0.95)).opacity(0.8)
+                                    .cornerRadius(12)
+                                    .shadow(color: Color(red: 0, green: 0, blue: 0).opacity(0.25), radius: 2, x: 1, y: 6)
+                                    .padding(.horizontal)
                             }
                             
-                            Spacer()
                             
                             NavigationLink {
                                 GradesView(gradesItem: apiClient.courses?[index].grades)
                             } label: {
                                 Text("Grades")
+                                    .font(.customFont(size: 23))
+                                    .foregroundColor(Color("fontColor"))
+                                    .frame(maxWidth: .infinity, maxHeight: 66)
+                                    .background(Color(red: 0.95, green: 0.95, blue: 0.95)).opacity(0.8)
+                                    .cornerRadius(12)
+                                    .shadow(color: Color(red: 0, green: 0, blue: 0).opacity(0.25), radius: 2, x: 1, y: 6)
+                                    .padding(.horizontal)
                             }
                             
                         }
                     }
-                    .frame(width: 314, height: 435)
+                    .frame(width: 314, height: 400)
                     .background(gradients[index % gradients.count])
                     .cornerRadius(31)
                     .shadow(color: Color.black.opacity(0.25), radius: 2, x: 1, y: 6)
