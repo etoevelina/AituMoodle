@@ -68,8 +68,12 @@ struct SubCardView: View {
                         
                         VStack{
                             NavigationLink {
-                                
-                            } label: {
+                                if let deadlines = apiClient.courses?[index].deadlines, !deadlines.isEmpty {
+                                    DeadlinesView(deadlines: deadlines)
+                                } else {
+                                    NoDeadlinesView()
+                                }
+                                } label: {
                                 Text("Deadlines")
                                     .font(.customFont(size: 23))
                                     .foregroundColor(Color("fontColor"))
@@ -138,6 +142,22 @@ struct SubCardView: View {
                 } catch {
                     print("Unexpected error: \(error)")
                 }
+                
+                do {
+                    try await apiClient.fetchDeadlines(token: "6f9484c897509fa5b7f541ff879f945f")
+                } catch let error as NetworkError {
+                    switch error {
+                    case .noData:
+                        print("No data received")
+                    case .notFound:
+                        print("Deadlines not found")
+                    case .decodingError:
+                        print("Error decoding deadlines data")
+                    }
+                } catch {
+                    print("Unexpected error: \(error)")
+                }
+
             }
         }
         .tabViewStyle(PageTabViewStyle())

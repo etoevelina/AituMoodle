@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A292D822CFB463500EB5F3F /* SettingsIconGenerator in Frameworks */ = {isa = PBXBuildFile; productRef = 0A292D812CFB463500EB5F3F /* SettingsIconGenerator */; };
+		0A42A9E02D01AEC300408D65 /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = 0A42A9DF2D01AEC300408D65 /* SwiftyGif */; settings = {ATTRIBUTES = (Required, ); }; };
 		FDD8A5EC2CEE5AFB00C7AA9C /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = FDD8A5EB2CEE5AFB00C7AA9C /* RiveRuntime */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 			files = (
 				0A292D822CFB463500EB5F3F /* SettingsIconGenerator in Frameworks */,
 				FDD8A5EC2CEE5AFB00C7AA9C /* RiveRuntime in Frameworks */,
+				0A42A9E02D01AEC300408D65 /* SwiftyGif in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +89,8 @@
 			packageProductDependencies = (
 				FDD8A5EB2CEE5AFB00C7AA9C /* RiveRuntime */,
 				0A292D812CFB463500EB5F3F /* SettingsIconGenerator */,
+				0A42A9DF2D01AEC300408D65 /* SwiftyGif */,
+				0A42A9E12D01AEC300408D65 /* SwiftyGif-Dynamic */,
 			);
 			productName = AituMoodle;
 			productReference = FD0D4E1E2CEA4CE800DA166F /* AituMoodle.app */;
@@ -120,6 +124,7 @@
 			packageReferences = (
 				FDD8A5EA2CEE5AFB00C7AA9C /* XCRemoteSwiftPackageReference "rive-ios" */,
 				0A292D802CFB463500EB5F3F /* XCRemoteSwiftPackageReference "SettingsIconGenerator" */,
+				0A42A9DE2D01AEC300408D65 /* XCRemoteSwiftPackageReference "SwiftyGif" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FD0D4E1F2CEA4CE800DA166F /* Products */;
@@ -363,6 +368,14 @@
 				minimumVersion = 1.0.2;
 			};
 		};
+		0A42A9DE2D01AEC300408D65 /* XCRemoteSwiftPackageReference "SwiftyGif" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kirualex/SwiftyGif";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.5;
+			};
+		};
 		FDD8A5EA2CEE5AFB00C7AA9C /* XCRemoteSwiftPackageReference "rive-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rive-app/rive-ios";
@@ -378,6 +391,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0A292D802CFB463500EB5F3F /* XCRemoteSwiftPackageReference "SettingsIconGenerator" */;
 			productName = SettingsIconGenerator;
+		};
+		0A42A9DF2D01AEC300408D65 /* SwiftyGif */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A42A9DE2D01AEC300408D65 /* XCRemoteSwiftPackageReference "SwiftyGif" */;
+			productName = SwiftyGif;
+		};
+		0A42A9E12D01AEC300408D65 /* SwiftyGif-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A42A9DE2D01AEC300408D65 /* XCRemoteSwiftPackageReference "SwiftyGif" */;
+			productName = "SwiftyGif-Dynamic";
 		};
 		FDD8A5EB2CEE5AFB00C7AA9C /* RiveRuntime */ = {
 			isa = XCSwiftPackageProductDependency;

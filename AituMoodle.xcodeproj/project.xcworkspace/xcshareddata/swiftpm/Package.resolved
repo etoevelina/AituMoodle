@@ -1,5 +1,5 @@
 {
-  "originHash" : "b8f713fc84878628fc0a2eaa78331606d7eef53af0ec00eb6399db6577a9ae42",
+  "originHash" : "59eb4e9d91fd06ec226d1ef34121e84a9d91febb31dbe0fc811ae0e80d76f0a1",
   "pins" : [
     {
       "identity" : "rive-ios",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "d2070ad86ae7834151f43418eaa57f05380d5aac",
         "version" : "1.0.2"
+      }
+    },
+    {
+      "identity" : "swiftygif",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kirualex/SwiftyGif",
+      "state" : {
+        "revision" : "4430cbc148baa3907651d40562d96325426f409a",
+        "version" : "5.4.5"
       }
     }
   ],

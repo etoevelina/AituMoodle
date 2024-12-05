@@ -17,6 +17,8 @@ final class ApiClient: ObservableObject {
     @Published var user: User?
     @Published var courses: [Course]?
     @Published var grades: [Grades]?
+    @Published var deadlines: [Deadline]?
+
 
     
     func fetchUser(token: String) async throws {
@@ -97,36 +99,30 @@ final class ApiClient: ObservableObject {
         }
     }
     
-    func fetchDeadlines(token: String, completion: @escaping (Result<[Deadline], NetworkError>) -> Void) {
+    func fetchDeadlines(token: String) async throws {
         let fetchRequest = URLRequest(url: Link.deadline(token: token).url)
         
-        URLSession.shared.dataTask(with: fetchRequest) { (data, response, error) -> Void in
-            if error != nil {
-                print("Error in session != nil")
-                completion(.failure(.noData))
-                return
-            } else {
-                
-                let httpResponse = response as? HTTPURLResponse
-                print("status code: \(httpResponse?.statusCode ?? 0)")
-                
-                if httpResponse?.statusCode == 404 {
-                    completion(.failure(.notFound))
-                } else {
-                    guard let safeData = data else { return }
-                    
-                    do {
-                        let decodedDeadlines = try JSONDecoder().decode([Deadline].self, from: safeData)
-                        
-                        completion(.success(decodedDeadlines))
-                    } catch let decodeError{
-                        print("Decoding error: \(decodeError.localizedDescription)")
-                        completion(.failure(.decodingError))
-                    }
-                }
+        let (data, response) = try await URLSession.shared.data(for: fetchRequest)
+        
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw NetworkError.noData
+        }
+        
+        print("Status code: \(httpResponse.statusCode)")
+        
+        if httpResponse.statusCode == 404 {
+            throw NetworkError.notFound
+        }
+        
+        do {
+            let decodedDeadlines = try JSONDecoder().decode([Deadline].self, from: data)
+            DispatchQueue.main.async {
+                self.deadlines = decodedDeadlines
+                self.indexingDeadlines()
             }
-         
-        }.resume()
+        } catch {
+            throw NetworkError.decodingError
+        }
     }
     
     private func splitter(courses: [Course]) -> [Course] {
@@ -153,6 +149,27 @@ final class ApiClient: ObservableObject {
                 }
                 self.courses?[i] = course
             }
+        }
+    }
+    
+    private func indexingDeadlines() {
+        guard let courses = courses, let deadlines = deadlines else {
+            print("Courses or deadlines are nil")
+            return
+        }
+        
+        for i in 0..<courses.count {
+            var course = courses[i]
+            let courseDeadlines = deadlines.filter { $0.course.id == course.id }
+            
+            if courseDeadlines.isEmpty {
+//                print("No deadlines found for course: \(course.fullname)")
+            } else {
+//                print("Deadlines for course \(course.fullname): \(courseDeadlines)")
+            }
+            
+            course.deadlines = courseDeadlines
+            self.courses?[i] = course
         }
     }
     
