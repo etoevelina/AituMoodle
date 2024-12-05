@@ -74,6 +74,7 @@ struct Course: Decodable {
     var name: Optional<String>
     var teacher: Optional<String>
     var grades: Optional<[GradeItem]>
+    var deadlines: Optional<[Deadline]>
 }
 
 struct Grades: Decodable {
