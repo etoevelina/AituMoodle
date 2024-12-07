@@ -34,14 +34,8 @@ struct MainView: View {
                     do {
                         try await apiClient.fetchCourses(token: "6f9484c897509fa5b7f541ff879f945f")
                     } catch let error as NetworkError {
-                        switch error {
-                        case .noData:
-                            print("No data received")
-                        case .notFound:
-                            print("Courses not found")
-                        case .decodingError:
-                            print("Error decoding courses data")
-                        }
+                        print(error)
+
                     } catch {
                         print("Unexpected error: \(error)")
                     }
@@ -49,14 +43,8 @@ struct MainView: View {
                     do {
                         try await apiClient.fetchGrades(token: "6f9484c897509fa5b7f541ff879f945f")
                     } catch let error as NetworkError {
-                        switch error {
-                        case .noData:
-                            print("No data received")
-                        case .notFound:
-                            print("Grades not found")
-                        case .decodingError:
-                            print("Error decoding grades data")
-                        }
+                        print(error)
+
                     } catch {
                         print("Unexpected error: \(error)")
                     }
@@ -64,14 +52,8 @@ struct MainView: View {
                     do {
                         try await apiClient.fetchDeadlines(token: "6f9484c897509fa5b7f541ff879f945f")
                     } catch let error as NetworkError {
-                        switch error {
-                        case .noData:
-                            print("No data received")
-                        case .notFound:
-                            print("Deadlines not found")
-                        case .decodingError:
-                            print("Error decoding deadlines data")
-                        }
+                        print(error)
+
                     } catch {
                         print("Unexpected error: \(error)")
                     }

@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		0A292D822CFB463500EB5F3F /* SettingsIconGenerator in Frameworks */ = {isa = PBXBuildFile; productRef = 0A292D812CFB463500EB5F3F /* SettingsIconGenerator */; };
 		0A42A9E02D01AEC300408D65 /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = 0A42A9DF2D01AEC300408D65 /* SwiftyGif */; settings = {ATTRIBUTES = (Required, ); }; };
-		FDD8A5EC2CEE5AFB00C7AA9C /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = FDD8A5EB2CEE5AFB00C7AA9C /* RiveRuntime */; };
+		0F6DA6C62D04E31B00DD4BB1 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 0F6DA6C52D04E31B00DD4BB1 /* RiveRuntime */; };
+		0FB818662D04DEFA007AFC9A /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 0FB818652D04DEFA007AFC9A /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,8 +43,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F6DA6C62D04E31B00DD4BB1 /* RiveRuntime in Frameworks */,
 				0A292D822CFB463500EB5F3F /* SettingsIconGenerator in Frameworks */,
-				FDD8A5EC2CEE5AFB00C7AA9C /* RiveRuntime in Frameworks */,
+				0FB818662D04DEFA007AFC9A /* FirebaseMessaging in Frameworks */,
 				0A42A9E02D01AEC300408D65 /* SwiftyGif in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -51,10 +53,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F6DA6C42D04E31B00DD4BB1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FD0D4E152CEA4CE800DA166F = {
 			isa = PBXGroup;
 			children = (
 				FD0D4E202CEA4CE800DA166F /* AituMoodle */,
+				0F6DA6C42D04E31B00DD4BB1 /* Frameworks */,
 				FD0D4E1F2CEA4CE800DA166F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,10 +97,11 @@
 			);
 			name = AituMoodle;
 			packageProductDependencies = (
-				FDD8A5EB2CEE5AFB00C7AA9C /* RiveRuntime */,
 				0A292D812CFB463500EB5F3F /* SettingsIconGenerator */,
 				0A42A9DF2D01AEC300408D65 /* SwiftyGif */,
 				0A42A9E12D01AEC300408D65 /* SwiftyGif-Dynamic */,
+				0FB818652D04DEFA007AFC9A /* FirebaseMessaging */,
+				0F6DA6C52D04E31B00DD4BB1 /* RiveRuntime */,
 			);
 			productName = AituMoodle;
 			productReference = FD0D4E1E2CEA4CE800DA166F /* AituMoodle.app */;
@@ -122,9 +133,10 @@
 			mainGroup = FD0D4E152CEA4CE800DA166F;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				FDD8A5EA2CEE5AFB00C7AA9C /* XCRemoteSwiftPackageReference "rive-ios" */,
 				0A292D802CFB463500EB5F3F /* XCRemoteSwiftPackageReference "SettingsIconGenerator" */,
 				0A42A9DE2D01AEC300408D65 /* XCRemoteSwiftPackageReference "SwiftyGif" */,
+				0FB818642D04DEFA007AFC9A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				0FE955BF2D04E15000510A74 /* XCRemoteSwiftPackageReference "rive-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FD0D4E1F2CEA4CE800DA166F /* Products */;
@@ -281,6 +293,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AituMoodle/AituMoodle.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AituMoodle/Preview Content\"";
@@ -311,6 +324,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AituMoodle/AituMoodle.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AituMoodle/Preview Content\"";
@@ -376,12 +390,20 @@
 				minimumVersion = 5.4.5;
 			};
 		};
-		FDD8A5EA2CEE5AFB00C7AA9C /* XCRemoteSwiftPackageReference "rive-ios" */ = {
+		0FB818642D04DEFA007AFC9A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+		0FE955BF2D04E15000510A74 /* XCRemoteSwiftPackageReference "rive-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rive-app/rive-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.3.7;
+				minimumVersion = 6.4.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -402,10 +424,15 @@
 			package = 0A42A9DE2D01AEC300408D65 /* XCRemoteSwiftPackageReference "SwiftyGif" */;
 			productName = "SwiftyGif-Dynamic";
 		};
-		FDD8A5EB2CEE5AFB00C7AA9C /* RiveRuntime */ = {
+		0F6DA6C52D04E31B00DD4BB1 /* RiveRuntime */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FDD8A5EA2CEE5AFB00C7AA9C /* XCRemoteSwiftPackageReference "rive-ios" */;
+			package = 0FE955BF2D04E15000510A74 /* XCRemoteSwiftPackageReference "rive-ios" */;
 			productName = RiveRuntime;
+		};
+		0FB818652D04DEFA007AFC9A /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0FB818642D04DEFA007AFC9A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

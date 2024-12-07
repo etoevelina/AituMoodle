@@ -94,3 +94,8 @@ struct Deadline: Decodable {
     let course: Course
     let formattedtime: String
 }
+
+struct Tokens: Codable {
+    let token: String
+    let device_token: String?
+}

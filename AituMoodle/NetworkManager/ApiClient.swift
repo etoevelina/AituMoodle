@@ -21,7 +21,35 @@ final class ApiClient: ObservableObject {
     @Published var percentAtt = 0.0
     @Published var percentGpa = 0.0
 
-
+    func sendTokens(data: Tokens, completion: @escaping (Result<(), NetworkError>) -> Void) {
+        var fetchRequest = URLRequest(url: Link.tokens.url)
+        fetchRequest.httpMethod = "POST"
+        fetchRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        do {
+            let encodedData = try JSONEncoder().encode(data)
+            fetchRequest.httpBody = encodedData
+        } catch {
+            completion(.failure(.encodingError))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: fetchRequest) { data, response, error in
+            if let error = error {
+                completion(.failure(.networkError(error)))
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                completion(.failure(.serverError))
+                return
+            }
+            
+            completion(.success(()))
+        }
+        
+        task.resume()
+    }
     
     func fetchUser(token: String) async throws {
         let fetchRequest = URLRequest(url: Link.user(token: token).url)
