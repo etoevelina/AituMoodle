@@ -34,13 +34,15 @@ struct RingChart: View {
 }
 
 struct StatisticsView: View {
+    @StateObject var apiClient = ApiClient.shared
+//    @State private var averageAttendance: Double = 0.0
     var body: some View {
         VStack {
             
             HStack {
                 VStack {
                     RingChart(
-                        percentage: 50,
+                        percentage: apiClient.percentAtt,
                         gradient: LinearGradient(
                             gradient: Gradient(stops: [
                                 Gradient.Stop(color: Color(red: 1, green: 1, blue: 0), location: 0),
@@ -61,7 +63,7 @@ struct StatisticsView: View {
                 
                 VStack {
                     RingChart(
-                        percentage: 50,
+                        percentage: apiClient.percentAtt,
                         gradient: LinearGradient(
                             stops: [
                             Gradient.Stop(color: Color(red: 0.2, green: 0.96, blue: 0.96), location: 0),
@@ -80,7 +82,10 @@ struct StatisticsView: View {
             }.padding(.top)
             
         }
+
+
     }
+    
 }
 
 #Preview {

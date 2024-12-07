@@ -80,6 +80,7 @@ struct AituMoodleApp: App {
                                 print("Unexpected error: \(error)")
                             }
                         }
+
                     }
             } else {
                 AuthView()

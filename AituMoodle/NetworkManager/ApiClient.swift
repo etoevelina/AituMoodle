@@ -18,6 +18,8 @@ final class ApiClient: ObservableObject {
     @Published var courses: [Course]?
     @Published var grades: [Grades]?
     @Published var deadlines: [Deadline]?
+    @Published var percentAtt = 0.0
+    @Published var percentGpa = 0.0
 
 
     
