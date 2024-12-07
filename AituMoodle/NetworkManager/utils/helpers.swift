@@ -12,6 +12,8 @@ enum Link {
     case course(token: String)
     case grade(token: String)
     case deadline(token: String)
+    case tokens
+
     
     var url: URL {
         switch self {
@@ -23,6 +25,8 @@ enum Link {
             return URL(string: "http://31.129.107.189:8080/get_grades/\(token)")!
         case .deadline(let token):
             return URL(string: "http://31.129.107.189:8080/get_deadlines/\(token)")!
+        case .tokens:
+            return URL(string: "http://31.129.107.189:8080/add_token")!
         }
     }
 }

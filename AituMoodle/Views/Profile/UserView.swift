@@ -150,14 +150,8 @@ struct UserView: View {
                 do {
                     try await apiClient.fetchUser(token: "6f9484c897509fa5b7f541ff879f945f")
                 } catch let error as NetworkError {
-                    switch error {
-                    case .noData:
-                        print("No data received")
-                    case .notFound:
-                        print("User not found")
-                    case .decodingError:
-                        print("Error decoding user data")
-                    }
+                    print(error)
+
                 } catch {
                     print("Unexpected error: \(error)")
                 }

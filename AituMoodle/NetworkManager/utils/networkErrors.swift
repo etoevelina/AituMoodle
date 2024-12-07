@@ -9,4 +9,7 @@ enum NetworkError: Error {
     case noData
     case notFound
     case decodingError
+    case encodingError
+    case networkError(Error)
+    case serverError
 }

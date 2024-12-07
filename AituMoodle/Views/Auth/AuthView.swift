@@ -7,15 +7,21 @@
 
 import SwiftUI
 import RiveRuntime
+import FirebaseMessaging
 
 struct AuthView: View {
-    // @ObservedObject var vm = ApiClient()
+    
+    @ObservedObject var vm = ApiClient()
+    @ObservedObject var notificationVm = NotificationManager()
     let defaults = UserDefaults.standard
     @State var token = ""
     let pic = RiveViewModel(fileName: "teddy", stateMachineName: "Login Machine", artboardName: "Teddy")
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @State var showMainView = false
+    
     var body: some View {
         ZStack{
-           
+            
             
             RiveViewModel(fileName: "shapes").view()
                 .ignoresSafeArea()
@@ -57,13 +63,36 @@ struct AuthView: View {
                         .frame(maxWidth: .infinity)
                     
                     Button {
-                        //   vm.checkToken(token: token) { isValid in
-                        //                            if isValid {
-                        //                                print("Token is valid.")
-                        //                            } else {
-                        //                                print("Token is invalid.")
-                        //                            }
-                        defaults.set(true, forKey: "login")
+                        if let device_token = Messaging.messaging().fcmToken {
+                            
+                            let tokens = Tokens(token: token, device_token: device_token)
+                            
+                            vm.sendTokens(data: tokens) { result in
+                                switch result {
+                                    
+                                case .success(_):
+                                    defaults.set(true, forKey: "login")
+                                    showMainView.toggle()
+                                case .failure(let error):
+                                    //Alert
+                                    print(error)
+                                }
+                            }
+                        } else {
+                            let tokens = Tokens(token: token, device_token: nil)
+                            vm.sendTokens(data: tokens) { result in
+                                switch result {
+                                    
+                                case .success(_):
+                                    defaults.set(true, forKey: "login")
+                                    showMainView.toggle()
+                                case .failure(let error):
+                                    //Alert
+                                    print(error)
+                                }
+                            }
+                        }
+                        
                     } label: {
                         Text("login")
                             .font(.customFont(size: 27))
@@ -115,6 +144,9 @@ struct AuthView: View {
                 }
                 .padding(.top, 52)
                 
+            }
+            .fullScreenCover(isPresented: $showMainView, onDismiss: nil) {
+                MainView()
             }
         }.ignoresSafeArea()
     }
