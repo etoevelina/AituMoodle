@@ -32,13 +32,37 @@ struct RingChart: View {
         }
     }
 }
+struct RingChartGrade: View {
+    var percentage: Double
+    var gradient: LinearGradient
+    private let lineWidth: CGFloat = 25.0
+    
+    var body: some View {
+        let formattedPercentage = String(format: "%.0f", percentage)
+        
+        return ZStack {
+            Circle()
+                .stroke(Color.gray.opacity(0.2), style: StrokeStyle(lineWidth: lineWidth))
+                .frame(width: 150, height: 150)
+            
+            Circle()
+                .trim(from: 0, to: CGFloat(percentage / 100))
+                .stroke(gradient, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
+                .frame(width: 150, height: 150)
+                .rotationEffect(Angle(degrees: -90))
+            
+            Text("\(formattedPercentage)%")
+                .font(.customFont(size: 40))
+                .fontWeight(.bold)
+        }
+    }
+}
 
 struct StatisticsView: View {
     @StateObject var apiClient = ApiClient.shared
 //    @State private var averageAttendance: Double = 0.0
     var body: some View {
         VStack {
-            
             HStack {
                 VStack {
                     RingChart(
